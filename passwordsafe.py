@@ -5,6 +5,8 @@ def tiene_longitud_maxima (contraseña, minimo = 12 ):
 
     return longitud_maxima
 
+
+
 def tiene_una_mayuscula (contraseña):
     tiene_mayuscula = False
 
@@ -13,12 +15,16 @@ def tiene_una_mayuscula (contraseña):
 
     return tiene_mayuscula
 
+
+
 def tiene_un_numero (contraseña):
     tiene_numero = False
     if any(caracter.isdigit() for caracter in contraseña):
         tiene_numero = True
 
     return tiene_numero
+
+
 
 
 def tiene_un_simbolo (contraseña):
@@ -30,6 +36,8 @@ def tiene_un_simbolo (contraseña):
         tiene_simbolo = True
 
     return tiene_simbolo
+
+
 
 
 def comprobar_num_intentos(num_intentos, intentos_maximos):
@@ -44,7 +52,9 @@ def sumar_num_intentos ():
 
     return num_intentos
 
-def comprobar_password_valida ():
+
+
+def comprobar_password_valida():
     passwordvalida = False
 
     if tiene_longitud_maxima(password) and tiene_una_mayuscula(password) and tiene_un_numero(password) and tiene_un_simbolo(password):
@@ -52,7 +62,54 @@ def comprobar_password_valida ():
 
     return passwordvalida
 
-password = str(input("Password:"))
+
+def mensajedepasswordvalida():
+         
+    return "La contraseña introducida es valida"
+
+
+
+
+def mensajedesuperaciondeintentos():
+
+    return "Has superado el número de intentos posibles. Vuelve a intentarlo más tarde"
+
+
+
+
+def mensajerequisitomayuscula():
+
+    return "Compruebe si su contraseña cumple los requisitos de tener al menos una mayúscula"
+
+
+
+def mensajerequisitonumero():
+
+    return "Compruebe si su contraseña cumple los requisitos de tener al menos un número"
+
+
+
+def mensajerequisitosimbolo():
+
+    return "Compruebe si su contraseña cumple los requisitos de tener al menos un simbolo"
+
+
+
+def mensajerequisitonumcaracteres():
+
+    return "Compruebe si su contraseña cumple los requisitos de tener al menos 12 carácteres"
+
+
+
+def introducirpassword():
+
+    global password
+
+    return str(input ("Password:"))
+
+
+
+password = introducirpassword()
 intentos_maximos = 3
 num_intentos = 0
 
@@ -62,15 +119,15 @@ while comprobar_num_intentos(num_intentos,intentos_maximos):
 
         if tiene_una_mayuscula(password) == False:
             
-            print("Compruebe si su contraseña cumple los requisitos de tener una mayuscula")
+            print(mensajerequisitomayuscula())
 
         elif tiene_un_numero(password) == False:
            
-            print("Compruebe si su contraseña cumple los requisitos de tener un número")
+            print(mensajerequisitonumero())
 
         elif tiene_un_simbolo(password) == False:
             
-            print("Compruebe si su contraseña cumple los requisitos de tener un símbolo")
+            print(mensajerequisitosimbolo())
 
 
         if comprobar_password_valida():
@@ -80,9 +137,9 @@ while comprobar_num_intentos(num_intentos,intentos_maximos):
         sumar_num_intentos()
 
         if comprobar_num_intentos(num_intentos, intentos_maximos):
-            password = str(input("Password:"))
+            password = introducirpassword()
         else:
-            print("Has superado el número de intentos posibles. Vuelve a intentarlo más tarde")
+            print(mensajedesuperaciondeintentos())
 
     else:
        
@@ -91,9 +148,9 @@ while comprobar_num_intentos(num_intentos,intentos_maximos):
         sumar_num_intentos()
 
         if comprobar_num_intentos(num_intentos, intentos_maximos):
-            password = str(input("Password:"))
+            password = introducirpassword()
         else:
-            print("Has superado el número de intentos posibles. Vuelve a intentarlo más tarde")
+            print(mensajedesuperaciondeintentos())
 
 if (comprobar_password_valida()):
-    print ("La contraseña introducida es válida")
+    print (mensajedepasswordvalida())
